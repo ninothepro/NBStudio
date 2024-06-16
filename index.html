@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Editor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Audio Editor</h1>
+        <input type="file" id="audio-upload" accept="audio/*">
+        <div id="layers">
+            <div id="waveform-layer-1"></div>
+            <div id="waveform-layer-2"></div>
+        </div>
+        <div class="controls">
+            <button id="play-pause">Play/Pause</button>
+            <button id="cut">Cut</button>
+            <button id="copy">Copy</button>
+            <button id="paste">Paste</button>
+            <button id="delete">Delete</button>
+            <button id="export">Export</button>
+            <button id="voice-over">Voice Over</button>
+        </div>
+    </div>
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
