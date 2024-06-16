@@ -1,21 +1,19 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const audioUpload = document.getElementById('audio-upload');
+    const audioUploadBtn = document.getElementById('audio-upload');
     const playPauseBtn = document.getElementById('play-pause');
     const cutBtn = document.getElementById('cut');
     const copyBtn = document.getElementById('copy');
     const pasteBtn = document.getElementById('paste');
     const deleteBtn = document.getElementById('delete');
+    const splitBtn = document.getElementById('split');
+    const cropBtn = document.getElementById('crop');
     const exportBtn = document.getElementById('export');
     const voiceOverBtn = document.getElementById('voice-over');
-
-    const waveform1 = WaveSurfer.create({
-        container: '#waveform-layer-1',
-        waveColor: 'violet',
-        progressColor: 'purple'
-    });
-
-    const waveform2 = WaveSurfer.create({
-        container: '#waveform-layer-2',
+    const timer = document.getElementById('timer');
+    const visualizer = document.getElementById('visualizer');
+    
+    const waveform = WaveSurfer.create({
+        container: '#waveform',
         waveColor: 'violet',
         progressColor: 'purple'
     });
@@ -23,24 +21,28 @@ document.addEventListener('DOMContentLoaded', function () {
     let isPlaying = false;
     let copiedSegment = null;
 
-    audioUpload.addEventListener('change', function (e) {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function (event) {
-                waveform1.load(event.target.result);
-            };
-            reader.readAsDataURL(file);
-        }
+    audioUploadBtn.addEventListener('click', function () {
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = 'audio/*';
+        fileInput.onchange = function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    waveform.load(event.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+        fileInput.click();
     });
 
     playPauseBtn.addEventListener('click', function () {
         if (isPlaying) {
-            waveform1.pause();
-            waveform2.pause();
+            waveform.pause();
         } else {
-            waveform1.play();
-            waveform2.play();
+            waveform.play();
         }
         isPlaying = !isPlaying;
     });
@@ -61,8 +63,16 @@ document.addEventListener('DOMContentLoaded', function () {
         // Implement delete functionality
     });
 
+    splitBtn.addEventListener('click', function () {
+        // Implement split functionality
+    });
+
+    cropBtn.addEventListener('click', function () {
+        // Implement crop functionality
+    });
+
     exportBtn.addEventListener('click', function () {
-        waveform1.exportPCM().then(function (pcmData) {
+        waveform.exportPCM().then(function (pcmData) {
             const blob = new Blob([pcmData], { type: 'audio/wav' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -76,5 +86,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
     voiceOverBtn.addEventListener('click', function () {
         // Implement voice over functionality
+    });
+
+    // Update timer
+    waveform.on('audioprocess', function () {
+        const currentTime = waveform.getCurrentTime();
+        timer.textContent = formatTime(currentTime);
+    });
+
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        seconds = Math.floor(seconds % 60);
+        return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    }
+
+    // Implement visualizer
+    waveform.on('audioprocess', function () {
+        // Implement visualizer logic here
     });
 });
