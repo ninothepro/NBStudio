@@ -5,26 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Audio Editor</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Audio Editor</h1>
-        <input type="file" id="audio-upload" accept="audio/*">
-        <div id="layers">
-            <div id="waveform-layer-1"></div>
-            <div id="waveform-layer-2"></div>
-        </div>
-        <div class="controls">
-            <button id="play-pause">Play/Pause</button>
-            <button id="cut">Cut</button>
-            <button id="copy">Copy</button>
-            <button id="paste">Paste</button>
-            <button id="delete">Delete</button>
-            <button id="export">Export</button>
-            <button id="voice-over">Voice Over</button>
-        </div>
+    <div class="menu-bar">
+        <div class="menu-item">File</div>
+        <div class="menu-item">Edit</div>
+        <div class="menu-item">View</div>
+        <div class="menu-item">Effects</div>
     </div>
-    <script src="https://unpkg.com/wavesurfer.js"></script>
-    <script src="script.js"></script>
+    <div class="toolbar">
+        <button id="audio-upload"><i class="icon-upload"></i> Upload</button>
+        <button id="play-pause"><i class="icon-play"></i></button>
+        <button id="cut"><i class="icon-cut"></i></button>
+        <button id="copy"><i class="icon-copy"></i></button>
+        <button id="paste"><i class="icon-paste"></i></button>
+        <button id="delete"><i class="icon-delete"></i></button>
+        <button id="split"><i class="icon-split"></i></button>
+        <button id="crop"><i class="icon-crop"></i></button>
+        <button id="export"><i class="icon-export"></i></button>
+        <button id="voice-over"><i class="icon-voice-over"></i></button>
+        <div id="timer">00:00</div>
+        <div id="visualizer"></div>
+    </div>
+    <div id="waveform"></div>
 </body>
 </html>
