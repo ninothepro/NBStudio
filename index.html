@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Editor</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.regions.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="menu-bar">
+        <div class="menu-item" id="file-menu">
+            File
+            <div class="dropdown-content">
+                <div class="dropdown-item" id="file-import">Import</div>
+                <div class="dropdown-item" id="file-export">Export</div>
+            </div>
+        </div>
+        <div class="menu-item" id="edit-menu">
+            Edit
+            <div class="dropdown-content">
+                <div class="dropdown-item" id="edit-copy">Copy</div>
+                <div class="dropdown-item" id="edit-paste">Paste</div>
+                <div class="dropdown-item" id="edit-undo">Undo</div>
+                <div class="dropdown-item" id="edit-cut">Cut</div>
+            </div>
+        </div>
+        <div class="menu-item" id="view-menu">
+            View
+            <div class="dropdown-content">
+                <div class="dropdown-item" id="view-zoom-in">Zoom In</div>
+                <div class="dropdown-item" id="view-zoom-out">Zoom Out</div>
+                <div class="dropdown-item" id="view-dark-mode">Dark Mode</div>
+                <div class="dropdown-item" id="view-light-mode">Light Mode</div>
+            </div>
+        </div>
+        <div class="menu-item" id="effects-menu">
+            Effects
+            <div class="dropdown-content">
+                <div class="dropdown-item" id="effect-reverse">Reverse</div>
+                <div class="dropdown-item" id="effect-echo">Echo</div>
+                <div class="dropdown-item" id="effect-pitch">Pitch</div>
+            </div>
+        </div>
+    </div>
+    <div class="toolbar">
+        <button id="audio-upload"><i class="icon-upload"></i> Upload</button>
+        <button id="play-pause"><i class="icon-play"></i></button>
+        <button id="cut"><i class="icon-cut"></i></button>
+        <button id="copy"><i class="icon-copy"></i></button>
+        <button id="paste"><i class="icon-paste"></i></button>
+        <button id="delete"><i class="icon-delete"></i></button>
+        <button id="split"><i class="icon-split"></i></button>
+        <button id="crop"><i class="icon-crop"></i></button>
+        <button id="export"><i class="icon-export"></i></button>
+        <button id="voice-over"><i class="icon-voice-over"></i></button>
+        <div id="timer">00:00</div>
+        <canvas id="visualizer"></canvas>
+    </div>
+    <div id="waveform"></div>
+</body>
+</html>
